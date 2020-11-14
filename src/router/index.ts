@@ -12,6 +12,11 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
+    path: "/home",
+    name: "Home",
+    component: Home
+  },
+  {
     path: "/country",
     name: "Country",
     component: Country

@@ -9,4 +9,6 @@ app.get(/.*/, (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 });
 
+console.log('listening..... on port: ', port);
+
 app.listen(port);
