@@ -14,36 +14,36 @@
     default-sort="rank"
   >
     <b-table-column field="rank" label="Rank" sortable sticky numeric v-slot="props">
-      {{ props.row.rank }}
+      {{ format(props.row.rank) }}
     </b-table-column>
     <b-table-column field="Country" label="Country" sortable sticky v-slot="props">
       {{ props.row.Country }}
     </b-table-column>
     <b-table-column field="TotalConfirmed" label="Total Confirmed" sortable sticky numeric v-slot="props">
       <span class="tag is-warning">
-        {{ props.row.TotalConfirmed }}
+        {{ format(props.row.TotalConfirmed) }}
       </span>
     </b-table-column>
     <b-table-column field="NewConfirmed" label="New Confirmed" sortable sticky numeric v-slot="props">
       <span class="tag is-success">
-        {{ props.row.NewConfirmed }}
+        {{ format(props.row.NewConfirmed) }}
       </span>
     </b-table-column>
     <b-table-column field="NewDeaths" label="New Deaths" sortable sticky numeric v-slot="props">
       <span class="tag is-danger">
-        {{ props.row.NewDeaths }}
+        {{ format(props.row.NewDeaths) }}
       </span>
     </b-table-column>
     <b-table-column field="TotalDeaths" label="Total Deaths" sortable sticky numeric v-slot="props">
-      {{ props.row.TotalDeaths }}
+      {{ format(props.row.TotalDeaths) }}
     </b-table-column>
     <b-table-column field="NewRecovered" label="New Recovered" sortable sticky numeric v-slot="props">
       <span class="tag is-info">
-        {{ props.row.NewRecovered }}
+        {{ format(props.row.NewRecovered) }}
       </span>
     </b-table-column>
     <b-table-column field="TotalRecovered" label="Total Recovered" sortable sticky numeric v-slot="props">
-      {{ props.row.TotalRecovered }}
+      {{ format(props.row.TotalRecovered) }}
     </b-table-column>
     <template slot="detail" slot-scope="props">
       <article class="media">
@@ -72,13 +72,13 @@ export default class CountryList extends Vue {
   @Prop({
     type: Array,
     required: true,
-    default: () => []
+    default: () => [],
   })
   results?: Array<Location>;
   @Prop({
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   })
   isLoading?: boolean;
 
@@ -114,6 +114,10 @@ export default class CountryList extends Vue {
     recoveries.value = formatNumber(country?.TotalRecovered);
 
     return [confirmed, deaths, recoveries];
+  }
+
+  format(number: number): string {
+    return formatNumber(number);
   }
 }
 </script>
